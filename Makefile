@@ -28,7 +28,21 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
+	@echo ">>> Making data directory"
+	$(PYTHON_INTERPRETER) src/data/make_create_dir.py data/raw
+	$(PYTHON_INTERPRETER) src/data/make_create_dir.py data/processed
+	@echo ">>> Making dataset"
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+
+## Make Dataset
+scrapper: 
+	@echo ">>> Making data scrapper"
+	$(PYTHON_INTERPRETER) src/data/make_fetch_data.py
+
+format:
+	$(PYTHON_INTERPRETER) -m isort .
+	$(PYTHON_INTERPRETER) -m black .
+	$(PYTHON_INTERPRETER) -m ruff check . --fix
 
 ## Delete all compiled Python files
 clean:

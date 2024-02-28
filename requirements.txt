@@ -5,6 +5,7 @@
 black
 ruff
 isort
+pre-commit
 mypy
 click
 Sphinx
