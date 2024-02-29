@@ -12,14 +12,14 @@ from bs4 import BeautifulSoup
 
 
 class JobScrapper(object):
-    def __init__(self):
+    def __init__(self, output_filepath=None):
         # get values from .env file
         self.BASE_URL = os.getenv("BASE_URL")
         self.KEYWORDS = json.loads(os.getenv("KEYWORDS"))
         self.BASE_URL_JOBS = os.getenv("BASE_URL_JOBS")
         self.logger = logging.getLogger(__name__)
         self.pages = os.getenv("PAGES")
-        self.output_filepath = os.getenv("OUTPUT_FILEPATH")
+        self.output_filepath = 'data/raw' if not output_filepath else output_filepath
         self.job_title = []
         self.job_company_name = []
         self.job_salary = []

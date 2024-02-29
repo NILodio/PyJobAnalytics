@@ -35,9 +35,14 @@ data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
 ## Make Dataset
+scrapper_cache: 
+	@echo ">>> Making data scrapper cache data"
+	$(PYTHON_INTERPRETER) src/data/make_fetch_data.py data/raw/jobs.csv True
+
+
 scrapper: 
 	@echo ">>> Making data scrapper"
-	$(PYTHON_INTERPRETER) src/data/make_fetch_data.py
+	$(PYTHON_INTERPRETER) src/data/make_fetch_data.py data/raw False
 
 format:
 	$(PYTHON_INTERPRETER) -m isort .
